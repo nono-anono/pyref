@@ -1,8 +1,8 @@
 import keyring
-from main import Bot
+from main import bot
 
 def init_all_settings(config):
-    Bot.log.info('Reading config file...')
+    bot.log.info('Reading config file...')
     with open('data/config.cfg','r') as file:
         for line in file:
             if not line.startswith("#") and "=" in line:
@@ -18,8 +18,8 @@ def init_all_settings(config):
                             config[key.split("_",1)[-1]+'_password'] = cred.password
                         else:
                             errMsg = (f"Couldn't find any Generic Windows Credentials with the name: '{value}'. Please make sure this credential name was created under Windows Credentials > Generic Credentials.")
-                            Bot.log.error(errMsg)
+                            bot.log.error(errMsg)
                             raise Exception(errMsg)
                     case _:
                         config[key] = value
-    Bot.log.info(f'Config object created with {len(config)} items.')
+    bot.log.info(f'Config object created with {len(config)} items.')

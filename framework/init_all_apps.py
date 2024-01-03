@@ -1,2 +1,4 @@
+from main import bot
+
 def init_all_apps():
-    print('InitAllApplications not implemented')
+    bot.log.info("Initializing applications...")

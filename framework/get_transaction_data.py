@@ -1,4 +1,4 @@
-def get_transaction_data(t_data,t_item,t_number):
+def get_transaction_data(t_data,t_item,t_number:int):
     print('getting transaction number, loggin here')
 
     if t_number <= len(t_data):
