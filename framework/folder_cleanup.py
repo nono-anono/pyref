@@ -1,11 +1,11 @@
 import shutil
 import os
-from main import bot
+from setup import logger
 
 def folder_cleanup(folder_list:list = []):
-    bot.log.info(f"Cleaning {len(folder_list)} folder(s)..." if folder_list != [] else "No folders to clean...")
+    logger.log.info(f"Cleaning {len(folder_list)} folder(s)..." if folder_list != [] else "No folders to clean...")
     for folder in folder_list:
         shutil.rmtree(folder)
         os.mkdir(folder)
-        bot.log.info(f"Folder '{folder}' was cleaned")
+        logger.log.info(f"Folder '{folder}' was cleaned")
 

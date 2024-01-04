@@ -1,3 +1,4 @@
+from setup import logger
+
 def end_process():
-    
-    print('EndProcess not implemented')
+    logger.log.info("Executing end process activities...")

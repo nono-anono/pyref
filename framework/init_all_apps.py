@@ -1,4 +1,4 @@
-from main import bot
+from setup import logger
 
 def init_all_apps():
-    bot.log.info("Initializing applications...")
+    logger.log.info("Initializing applications...")

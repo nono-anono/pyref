@@ -1,10 +1,11 @@
-from main import bot
+from setup import logger
 import subprocess
 
-def kill_all_processes(proc_list:list=[]):
-    bot.log.info(f"Killing {len(proc_list)} processes..." if proc_list != [] else "No processes to kill...")
+def kill_all_processes(proc_to_kill:list[str]=[]):
+
+    logger.log.info(f"Killing {len(proc_to_kill)} processes..." if proc_to_kill != [] else "No processes to kill...")
     
-    for item in proc_list:
+    for item in proc_to_kill:
         process = f"{item}.exe"
         subprocess.run(['taskkill','/f','/im',f'{process}'])
-        bot.log.info(f"All instances of '{process}' have been terminated.")
+        logger.log.info(f"All instances of '{process}' have been terminated.")
