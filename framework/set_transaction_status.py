@@ -31,7 +31,7 @@ def set_transaction_status(t_number:int,retry_count:int,max_retry_count:int=0,
             logger.log.warning(f"Failed to take screenshot: {e}")
 
         try:
-            close_all_apps(proc_to_close)
+            close_all_apps()
         except Exception as e:
             logger.log.warning(f"Failed to close applications: {e}")
             try:

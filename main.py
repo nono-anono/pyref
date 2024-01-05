@@ -50,7 +50,7 @@ class bot(state_machine,transitions):
     def on_enter_process(**kwargs):
         try:
             bot.business_exception = None
-            process(bot.transaction_item,bot.browser)
+            process(bot.transaction_item,bot.transaction_number)
         except ValueError as be:
             bot.business_exception = be
             logger.log.error(be)
