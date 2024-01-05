@@ -17,6 +17,3 @@ def process(t_item,browser):
 
     # Assuming there is a 'Submit' button after filling the form
     click('Submit')
-
-    # Perform more actions if needed...
-    

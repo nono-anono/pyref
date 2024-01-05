@@ -20,7 +20,6 @@ class bot(state_machine,transitions):
     retry_init_flag:bool = False
 
     processes_to_kill:list[str] = []
-    processes_to_close:list[str] = []
     folders_to_clean:list = ['data\\output','data\\temp']
     # endregion
 
@@ -35,7 +34,7 @@ class bot(state_machine,transitions):
                 folder_cleanup(bot.folders_to_clean)
 
             bot.transaction_data = create_transaction_data(bot.config['URL_EXCEL_FILE'],'challenge.xlsx','data\\temp')
-            bot.browser =  init_all_apps("https://rpachallenge.com")
+            bot.browser =  init_all_apps(bot.config['URL_SITE'])
         except Exception as e:
             bot.system_exception = e
             bot.retry_init_flag,bot.retry_init_counter = retry_init(bot.config['MAX_RETRY_INIT'],bot.retry_init_flag,bot.retry_init_counter)
@@ -69,7 +68,7 @@ class bot(state_machine,transitions):
 
     def on_enter_end(**kwargs):
         try:
-            close_all_apps(bot.processes_to_close)
+            close_all_apps()
         except Exception as e:
             logger.log.warning(f"Apps failed to close gracefully: {e}")
             kill_all_processes(bot.processes_to_kill)
