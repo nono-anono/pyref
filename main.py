@@ -11,8 +11,8 @@ class bot(state_machine,transitions):
     system_exception = None
     business_exception = None
 
-    transaction_data = None
-    transaction_item = None
+    transaction_data = object
+    transaction_item = object
     transaction_number:int  = 1
 
     retry_item_counter:int  = 0
@@ -34,8 +34,8 @@ class bot(state_machine,transitions):
                 kill_all_processes()
                 folder_cleanup(bot.folders_to_clean)
 
-            bot.transaction_data = create_transaction_data()
-            init_all_apps()
+            bot.transaction_data = create_transaction_data(bot.config['URL_EXCEL_FILE'],'challenge.xlsx','data\\temp')
+            bot.browser =  init_all_apps("https://rpachallenge.com")
         except Exception as e:
             bot.system_exception = e
             bot.retry_init_flag,bot.retry_init_counter = retry_init(bot.config['MAX_RETRY_INIT'],bot.retry_init_flag,bot.retry_init_counter)
@@ -51,7 +51,7 @@ class bot(state_machine,transitions):
     def on_enter_process(**kwargs):
         try:
             bot.business_exception = None
-            process(bot.transaction_item)
+            process(bot.transaction_item,bot.browser)
         except ValueError as be:
             bot.business_exception = be
             logger.log.error(be)

@@ -22,7 +22,7 @@ class state_machine:
 
         # Run the state machine till end and passes arguments to trigger condition-checking methods
         while bot.state != 'end':
-            bot.next(
+            bot.trigger('next',
                 system_exception   = bot.system_exception,
                 retry_init_flag    = bot.retry_init_flag,
                 transaction_item   = bot.transaction_item,

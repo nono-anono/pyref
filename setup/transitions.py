@@ -25,10 +25,10 @@ class transitions:
         return kwargs['system_exception'] != None
 
     def new_data(**kwargs):
-        return kwargs['transaction_item'] != None
+        return kwargs['transaction_item'] is not None
 
     def no_data(**kwargs):
-        return kwargs['transaction_item'] == None
+        return kwargs['transaction_item'] is None
 
     def process_OK(**kwargs):
         return kwargs['system_exception'] == None and kwargs['business_exception'] == None

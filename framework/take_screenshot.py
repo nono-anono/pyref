@@ -3,11 +3,11 @@ from datetime import datetime
 from PIL import ImageGrab
 import os
 
-def take_screenshot(ss_folder:str):
+def take_screenshot(ss_folder:str,ss_file_name:str):
+    
+    if ss_folder != "":
+        os.makedirs(ss_folder, exist_ok=True)
 
-    now = datetime.now().strftime('%Y%m%d_%H%M%S')
-
-    ss_file_name = f"{now}_exception.png"
     ss_path = os.path.join(ss_folder,ss_file_name)
     
     ImageGrab.grab().save(ss_path)

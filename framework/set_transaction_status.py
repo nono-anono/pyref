@@ -1,7 +1,7 @@
 from setup import logger
 from framework import retry_current_transaction,close_all_apps,kill_all_processes
 from framework.take_screenshot import take_screenshot
-import sys
+from datetime import datetime
 
 def set_transaction_status(t_number:int,retry_count:int,max_retry_count:int=0,
         system_exception:Exception=None, business_exception:ValueError=None,proc_to_close:list=[],proc_to_kill:list=[]):
@@ -23,7 +23,10 @@ def set_transaction_status(t_number:int,retry_count:int,max_retry_count:int=0,
         logger.log.info("Transaction process status: System Exception")
         
         try:
-            take_screenshot(".logs")
+            now = datetime.now().strftime('%Y%m%d_%H%M%S')
+            file_name = f"{now}_exception.png"
+            folder_name = ".logs"
+            take_screenshot(folder_name,file_name)
         except Exception as e:
             logger.log.warning(f"Failed to take screenshot: {e}")
 
