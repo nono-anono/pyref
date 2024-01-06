@@ -1,15 +1,19 @@
 from setup import logger
 from datetime import datetime
-from PIL import ImageGrab
+import mss
 import os
 
 def take_screenshot(ss_folder:str,ss_file_name:str):
     
     if ss_folder != "":
         os.makedirs(ss_folder, exist_ok=True)
-
-    ss_path = os.path.join(ss_folder,ss_file_name)
     
-    ImageGrab.grab().save(ss_path)
+    with mss.mss() as sct:
 
-    logger.log.info(f"Screenshot saved at: {ss_path}")
+        for num,monitor in enumerate(sct.monitors[1:],start=1):
+
+            ss_path = f"{ss_folder}\\{num}_{ss_file_name}"
+            ss = sct.grab(monitor)
+            output = ss_path
+            mss.tools.to_png(ss.rgb,ss.size,output=output)
+            logger.log.info(f"Screenshot saved at: {ss_path}")
