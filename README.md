@@ -1,5 +1,5 @@
 # pyref
-Uipath's ReFramework, but in python.
+Uipath's ReFramework, but in python. Implements RPA Challenge as demo and quick start.
 > _**NOTE:** At the moment, implemented only for Windows (linux/macos tbd)_
 
 ## Table of Contents
