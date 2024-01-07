@@ -10,7 +10,7 @@ Uipath's ReFramework, but in python.
 
 ## Getting started 
 ### Quick start guide - Windows 10/11
-1. Download [install.bat](tbd) script, and run it. It will:
+1. Download [install.bat](install.bat) script, and run it. It will:
 - install python 3.11, if not installed already 
 - download this repo locally (downloads to ``%USERPROFILE%``)
 - create and restore virtual environment for the project
