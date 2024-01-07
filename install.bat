@@ -89,9 +89,6 @@ powershell -Command "Write-Host '[INFO] - Opening the project folder...' -Foregr
 START .
 
 powershell -Command "Write-Host '[DONE] - Installation and setup completed successfully' -ForegroundColor Green"
-
-powershell -Command "Write-Host '[DONE] - Run 'venv\Scripts\activate && '' -ForegroundColor Green"
-
 :EndScript
 PAUSE
 EXIT /B 0
